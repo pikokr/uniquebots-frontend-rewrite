@@ -19,6 +19,12 @@
           </v-list-item>
         </div>
         <div v-else>
+          <v-list-item link :to="`/user/${$store.state.user.id}`">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>프로필</v-list-item-title>
+          </v-list-item>
           <v-list-item link to="/logout">
             <v-list-item-icon>
               <v-icon>mdi-lock</v-icon>
