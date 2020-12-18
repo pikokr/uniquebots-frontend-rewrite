@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <v-app dark>
+    <Header />
     <Nuxt />
-  </div>
+  </v-app>
 </template>
 
 <style>
@@ -53,3 +54,13 @@ html {
   background-color: #35495e;
 }
 </style>
+<script>
+import Header from '../components/Header'
+export default {
+  components: { Header },
+  mounted() {
+    const theme = localStorage.getItem('light')
+    this.$vuetify.theme.dark = !theme
+  },
+}
+</script>

@@ -1,35 +1,16 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">uniquebots</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-    <nuxt-link to="/test">test</nuxt-link>
+    <div>Router test!</div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({})
+export default {
+  asyncData(): Promise<object | void> | object | void {
+    // eslint-disable-next-line nuxt/no-timing-in-fetch-data
+    return new Promise((resolve) => setTimeout(resolve, 1000))
+  },
+}
 </script>
 
 <style>
