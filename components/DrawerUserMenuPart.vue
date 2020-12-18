@@ -1,14 +1,14 @@
 <template>
   <div>
-    <v-list-item v-if="$store.state.user" two-line>
-      <v-list-item-avatar>
-        <v-img :src="$store.state.user.avatarURL" />
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>{{ $store.state.user.tag }}</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
     <v-list class="fill-height">
+      <v-list-item v-if="$store.state.user">
+        <v-list-item-avatar>
+          <v-img :src="$store.state.user.avatarURL" />
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>{{ $store.state.user.tag }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-list nav dense>
         <div v-if="!$store.state.user">
           <v-list-item link :href="$store.state.login">
