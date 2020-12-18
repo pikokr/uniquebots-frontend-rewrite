@@ -6,7 +6,7 @@ export default (ctx: Context): ApolloClientConfig & any => {
     httpEndpoint: 'http://test.pikodev.me:1234/graphql',
     getAuth() {
       if (ctx.app.$cookies.get('_token')) {
-        return 'Bearer' + ctx.app.$cookies.get('_token')
+        return 'Bearer ' + ctx.app.$cookies.get('_token')
       }
       return ''
     },

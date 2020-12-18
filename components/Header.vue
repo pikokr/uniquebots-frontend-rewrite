@@ -12,37 +12,35 @@
         <v-icon>mdi-brightness-4</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list nav dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.link"
-          :to="item.link"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>{{ item.name }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+      style="min-width: 300px"
+    >
+      <v-tabs vertical class="fill-height">
+        <v-tab><v-icon>mdi-account</v-icon></v-tab>
+        <v-tab><v-icon>mdi-view-dashboard</v-icon></v-tab>
+        <v-tab-item>
+          <DrawerUserMenuPart />
+        </v-tab-item>
+        <v-tab-item>
+          <DefaultDrawer />
+        </v-tab-item>
+      </v-tabs>
     </v-navigation-drawer>
   </div>
 </template>
 
 <script>
+import DefaultDrawer from './DefaultDrawer'
+import DrawerUserMenuPart from './DrawerUserMenuPart'
 export default {
   name: 'Header',
+  components: { DrawerUserMenuPart, DefaultDrawer },
   data: () => ({
     drawer: false,
     group: null,
-    items: [
-      {
-        name: '홈',
-        link: '/',
-        icon: 'mdi-home',
-      },
-    ],
   }),
   methods: {
     toggleTheme() {
