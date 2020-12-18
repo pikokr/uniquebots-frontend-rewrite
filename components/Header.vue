@@ -8,6 +8,9 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon @click="toggleTheme">
+        <v-icon>mdi-brightness-4</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
@@ -41,5 +44,19 @@ export default {
       },
     ],
   }),
+  methods: {
+    toggleTheme() {
+      let theme
+
+      if (localStorage.getItem('light')) {
+        localStorage.removeItem('light')
+        theme = false
+      } else {
+        localStorage.setItem('light', '1')
+        theme = true
+      }
+      this.$vuetify.theme.dark = !theme
+    },
+  },
 }
 </script>
