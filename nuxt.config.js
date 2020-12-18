@@ -33,6 +33,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/apollo',
+    'cookie-universal-nuxt',
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

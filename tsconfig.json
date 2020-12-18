@@ -25,7 +25,10 @@
     },
     "types": [
       "@types/node",
-      "@nuxt/types"
+      "@nuxt/types",
+      "cookie-universal-nuxt",
+      "@nuxtjs/apollo",
+      "graphql-tag"
     ]
   },
   "exclude": [

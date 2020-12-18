@@ -7,6 +7,7 @@
           Uniquebots
         </nuxt-link>
       </v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
