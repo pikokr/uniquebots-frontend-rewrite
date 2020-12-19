@@ -17,9 +17,19 @@ export default {
   data: () => ({
     items: [
       {
-        name: '홈',
-        link: '/',
-        icon: 'mdi-home',
+        name: '유저 관리',
+        link: '/admin/users',
+        icon: 'mdi-account',
+      },
+      {
+        name: '봇 관리',
+        link: '/admin/bots',
+        icon: 'mdi-robot',
+      },
+      {
+        name: '심사 관리',
+        link: '/admin/judges',
+        icon: 'mdi-gavel',
       },
     ],
   }),

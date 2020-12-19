@@ -20,7 +20,9 @@
     >
       <v-tabs vertical class="fill-height">
         <v-tab><v-icon>mdi-account</v-icon></v-tab>
-        <v-tab><v-icon>mdi-view-dashboard</v-icon></v-tab>
+        <v-tab v-if="$store.state.user && $store.state.user.admin"
+          ><v-icon>mdi-view-dashboard</v-icon></v-tab
+        >
         <v-tab-item>
           <DrawerUserMenuPart />
         </v-tab-item>
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-import DefaultDrawer from './DefaultDrawer'
+import DefaultDrawer from './AdminDrawer'
 import DrawerUserMenuPart from './DrawerUserMenuPart'
 export default {
   name: 'Header',

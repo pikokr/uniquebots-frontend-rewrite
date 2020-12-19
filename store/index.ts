@@ -27,6 +27,7 @@ export const actions: ActionTree<any, any> = {
                 id
                 avatarURL
                 tag
+                admin
               }
             }
           `,
