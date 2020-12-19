@@ -80,20 +80,20 @@ export default {
 <style scoped lang="scss">
 .avatar-area {
   display: flex;
-  @media (min-width: 769px) {
+  @media (min-width: 960px) {
     justify-content: flex-end;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 959px) {
     justify-content: center;
   }
 }
 .info-area {
   display: flex;
   flex-direction: column;
-  @media (min-width: 769px) {
+  @media (min-width: 960px) {
     text-align: left;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 959px) {
     text-align: center;
   }
 }
