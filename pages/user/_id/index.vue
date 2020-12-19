@@ -17,6 +17,14 @@
           </v-tooltip>
         </div>
       </v-col>
+      <v-col cols="12" sm="12">
+        <v-row justify="center">
+          <v-col cols="12" sm="12" md="8">
+            <h2>제작한 봇</h2>
+            <small>{{ user.tag }}님이 제작한 봇들 목록입니다.</small>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -25,26 +33,37 @@
 import { Context } from '@nuxt/types'
 import gql from 'graphql-tag'
 
+const query = gql`
+  query($id: String!, $page: Int!) {
+    user(id: $id) {
+      id
+      tag
+      avatarURL
+      badges {
+        id
+        icon
+        name
+      }
+      bots(page: $page) {
+        pages
+        result {
+          id
+          tag
+          avatar
+        }
+      }
+    }
+  }
+`
+
 export default {
   async asyncData(ctx: Context) {
     const client = ctx.app.apolloProvider.defaultClient
     const data = await client.query({
-      query: gql`
-        query($id: String!) {
-          user(id: $id) {
-            id
-            tag
-            avatarURL
-            badges {
-              id
-              icon
-              name
-            }
-          }
-        }
-      `,
+      query,
       variables: {
         id: ctx.route.params.id,
+        page: 1,
       },
     })
     if (!data.data.user)

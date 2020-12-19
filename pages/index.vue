@@ -28,9 +28,12 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  head: () => ({
+    title: 'HOME - UniqueBots',
+  }),
+})
 </script>
-
 <style>
 .container {
   margin: 0 auto;
