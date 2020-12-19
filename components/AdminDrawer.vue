@@ -31,6 +31,11 @@ export default {
         link: '/admin/judges',
         icon: 'mdi-gavel',
       },
+      {
+        name: '감사 로그 보기',
+        link: '/admin/audits',
+        icon: 'mdi-format-list-bulleted',
+      },
     ],
   }),
 }

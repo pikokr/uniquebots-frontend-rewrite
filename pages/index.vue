@@ -22,7 +22,6 @@
         </a>
       </div>
     </div>
-    <nuxt-link to="/test">test</nuxt-link>
   </div>
 </template>
 
