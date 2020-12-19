@@ -1,11 +1,20 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'uniquebots',
+    title: 'UniqueBots',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'UniqueBots - 디스코드 봇 리스트',
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: 'UniqueBots - 디스코드 봇 리스트',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
