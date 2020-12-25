@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-if="user">
+    <v-row v-if="user" justify="center">
       <v-col cols="12" sm="12" class="avatar-area" md="6">
         <v-img max-width="300" :src="user.avatarURL" />
       </v-col>
@@ -17,11 +17,40 @@
           </v-tooltip>
         </div>
       </v-col>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" sm="10">
         <v-row justify="center">
-          <v-col cols="12" sm="12" md="8">
+          <v-col cols="12" sm="12">
             <h2>제작한 봇</h2>
             <small>{{ user.tag }}님이 제작한 봇들 목록입니다.</small>
+          </v-col>
+          <v-col cols="12" sm="12">
+            <v-row>
+              <v-col
+                v-for="bot in user.bots.result"
+                :key="bot.id"
+                cols="12"
+                sm="12"
+                md="6"
+                lg="4"
+                xl="2"
+              >
+                <v-card>
+                  <v-list-item link :to="'/bot/' + bot.id" three-line>
+                    <v-list-item-content>
+                      <v-list-item-title class="headline mb-1">
+                        {{ bot.tag }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>
+                        {{ bot.brief }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                    <v-list-item-avatar rounded size="80">
+                      <v-img :src="bot.avatar" />
+                    </v-list-item-avatar>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -50,6 +79,7 @@ const query = gql`
           id
           tag
           avatar
+          brief
         }
       }
     }
@@ -106,6 +136,7 @@ export default {
     justify-content: center;
   }
 }
+
 .info-area {
   display: flex;
   flex-direction: column;
