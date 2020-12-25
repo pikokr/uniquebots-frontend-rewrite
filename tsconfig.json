@@ -23,12 +23,16 @@
         "./*"
       ]
     },
-    "types": [
-      "@types/node",
-      "@nuxt/types",
-      "cookie-universal-nuxt",
-      "@nuxtjs/apollo",
-      "graphql-tag"
+//    "types": [
+//      "@types/node",
+//      "@nuxt/types",
+//      "cookie-universal-nuxt",
+//      "@nuxtjs/apollo",
+//      "graphql-tag"
+//    ],
+    "typeRoots": [
+      "./@types",
+      "./node_modules"
     ]
   },
   "exclude": [

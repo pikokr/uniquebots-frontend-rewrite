@@ -8,6 +8,16 @@
         <v-col cols="12" sm="12" md="6" class="info-area">
           <h1>{{ bot.tag }}</h1>
           <h3>{{ bot.brief }}</h3>
+          <div>
+            <v-btn v-if="bot.invite" :href="bot.invite" target="_blank"
+              >초대</v-btn
+            >
+            <v-btn
+              v-if="$store.state.user && bot.owner.id === $store.state.user.id"
+              :to="'/dash/bot/' + bot.id"
+              >관리</v-btn
+            >
+          </div>
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -23,24 +33,8 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
 import gql from 'graphql-tag'
-import markdownIt from 'markdown-it'
-import 'highlight.js/styles/androidstudio.css'
-import hljs from 'highlight.js'
-
-const md = markdownIt({
-  html: false,
-  highlight: (str, lang) => {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return `<div style="display: block;overflow-x: auto;padding: 0.5em;background: #002b36;color: #839496;">${
-          hljs.highlight(lang, str).value
-        }</div>`
-      } catch (e) {}
-    }
-  },
-})
+import md from '../../../plugins/markdown'
 
 const query = gql`
   query($id: String!) {
@@ -50,12 +44,17 @@ const query = gql`
       avatar
       brief
       description
+      locked
+      invite
+      owner {
+        id
+      }
     }
   }
 `
 
 export default {
-  async asyncData(ctx: Context) {
+  async asyncData(ctx) {
     const client = ctx.app.apolloProvider.defaultClient
     const data = await client.query({
       query,
@@ -70,11 +69,12 @@ export default {
       })
     return {
       bot: data.data.bot,
+      // eslint-disable-next-line nuxt/no-this-in-fetch-data
       description: md.render(data.data.bot.description),
     }
   },
   head() {
-    const bot = (this as any).bot
+    const bot = this.bot
 
     return {
       title: bot.tag,
