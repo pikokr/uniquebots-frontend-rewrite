@@ -6,6 +6,7 @@
       </v-col>
       <v-col cols="12" sm="12" md="6" class="info-area">
         <h1>{{ bot.tag }}</h1>
+        <h3>{{ bot.brief }}</h3>
       </v-col>
     </v-row>
   </div>
@@ -21,6 +22,8 @@ const query = gql`
       id
       tag
       avatar
+      brief
+      description
     }
   }
 `
