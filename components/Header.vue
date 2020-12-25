@@ -20,7 +20,7 @@
     >
       <v-tabs vertical class="fill-height">
         <v-tab><v-icon>mdi-account</v-icon></v-tab>
-        <v-tab v-if="$store.state.user && $store.state.user.admin"
+        <v-tab v-if="$store.state.bot && $store.state.bot.admin"
           ><v-icon>mdi-view-dashboard</v-icon></v-tab
         >
         <v-tab-item>
