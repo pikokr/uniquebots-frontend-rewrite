@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row v-if="user">
+    <v-row v-if="user" justify="center">
       <v-col cols="12" sm="12" class="avatar-area" md="6">
         <v-img max-width="300" :src="user.avatarURL" />
       </v-col>
@@ -17,13 +17,13 @@
           </v-tooltip>
         </div>
       </v-col>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" sm="10">
         <v-row justify="center">
-          <v-col cols="12" sm="10">
+          <v-col cols="12" sm="12">
             <h2>제작한 봇</h2>
             <small>{{ user.tag }}님이 제작한 봇들 목록입니다.</small>
           </v-col>
-          <v-col cols="12" sm="10">
+          <v-col cols="12" sm="12">
             <v-row>
               <v-col
                 v-for="bot in user.bots.result"
@@ -101,7 +101,7 @@ export default {
         statusCode: 404,
         message: '유저를 찾을 수 없습니다',
       })
-    return { bot: data.data.user }
+    return { user: data.data.user }
   },
   head() {
     const user = (this as any).user

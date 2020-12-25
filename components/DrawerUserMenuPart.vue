@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-list class="fill-height" dense>
-      <v-list-item v-if="$store.state.bot">
+      <v-list-item v-if="$store.state.user">
         <v-list-item-avatar>
-          <v-img :src="$store.state.bot.avatarURL" />
+          <v-img :src="$store.state.user.avatarURL" />
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title>{{ $store.state.bot.tag }}</v-list-item-title>
+          <v-list-item-title>{{ $store.state.user.tag }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <div v-if="!$store.state.bot">
+      <div v-if="!$store.state.user">
         <v-list-item link :href="$store.state.login">
           <v-list-item-icon>
             <v-icon>mdi-lock</v-icon>
@@ -18,7 +18,7 @@
         </v-list-item>
       </div>
       <div v-else>
-        <v-list-item link :to="`/user/${$store.state.bot.id}`">
+        <v-list-item link :to="`/user/${$store.state.user.id}`">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>

@@ -13,9 +13,7 @@
       <v-row justify="center">
         <v-col cols="12" sm="11" md="10">
           <v-card>
-            <v-card-text>
-              {{ bot.description }}
-            </v-card-text>
+            <v-card-text v-html="description" />
           </v-card>
         </v-col>
       </v-row>
@@ -26,6 +24,22 @@
 <script lang="ts">
 import { Context } from '@nuxt/types'
 import gql from 'graphql-tag'
+import markdownIt from 'markdown-it'
+import 'highlight.js/styles/androidstudio.css'
+import hljs from 'highlight.js'
+
+const md = markdownIt({
+  html: false,
+  highlight: (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return `<div style="display: block;overflow-x: auto;padding: 0.5em;background: #002b36;color: #839496;">${
+          hljs.highlight(lang, str).value
+        }</div>`
+      } catch (e) {}
+    }
+  },
+})
 
 const query = gql`
   query($id: String!) {
@@ -53,7 +67,10 @@ export default {
         statusCode: 404,
         message: '봇을 찾을 수 없습니다',
       })
-    return { bot: data.data.bot }
+    return {
+      bot: data.data.bot,
+      description: md.render(data.data.bot.description),
+    }
   },
   head() {
     const bot = (this as any).bot

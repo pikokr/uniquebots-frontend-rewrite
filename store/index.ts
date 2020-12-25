@@ -9,7 +9,7 @@ export const state = () => ({
 })
 
 export const mutations: MutationTree<any> = {
-  bot(state, payload) {
+  user(state, payload) {
     state.user = payload
   },
 }
