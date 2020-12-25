@@ -1,14 +1,25 @@
 <template>
   <div>
-    <v-row v-if="bot">
-      <v-col cols="12" sm="12" class="avatar-area" md="6">
-        <v-img max-width="300" :src="bot.avatar" />
-      </v-col>
-      <v-col cols="12" sm="12" md="6" class="info-area">
-        <h1>{{ bot.tag }}</h1>
-        <h3>{{ bot.brief }}</h3>
-      </v-col>
-    </v-row>
+    <div v-if="bot">
+      <v-row>
+        <v-col cols="12" sm="12" class="avatar-area" md="6">
+          <v-img max-width="300" :src="bot.avatar" />
+        </v-col>
+        <v-col cols="12" sm="12" md="6" class="info-area">
+          <h1>{{ bot.tag }}</h1>
+          <h3>{{ bot.brief }}</h3>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="12" sm="11" md="10">
+          <v-card>
+            <v-card-text>
+              {{ bot.description }}
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
