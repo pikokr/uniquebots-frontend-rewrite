@@ -13,6 +13,7 @@
       <v-row justify="center">
         <v-col cols="12" sm="11" md="10">
           <v-card>
+            <!--eslint-disable-next-line vue/no-v-html-->
             <v-card-text v-html="description" />
           </v-card>
         </v-col>
