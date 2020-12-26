@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import gql from 'graphql-tag'
+import { Context } from '@nuxt/types'
 import md from '../../../plugins/markdown'
 
 const query = gql`
@@ -54,7 +55,7 @@ const query = gql`
 `
 
 export default {
-  async asyncData(ctx) {
+  async asyncData(ctx: Context) {
     const client = ctx.app.apolloProvider.defaultClient
     const data = await client.query({
       query,
