@@ -8,6 +8,24 @@
         <v-col cols="12" sm="12" md="6" class="info-area">
           <h1>{{ bot.tag }}</h1>
           <h3>{{ bot.brief }}</h3>
+          <div style="margin-bottom: 10px">
+            <v-chip label link
+              ><v-icon left>mdi-dns</v-icon> 서버 {{ bot.guilds }}개
+            </v-chip>
+            <v-chip v-if="bot.discordVerified" label link color="success"
+              ><v-icon left>mdi-check-bold</v-icon> 디스코드 인증됨
+            </v-chip>
+            <v-chip v-if="bot.status === 'online'" label link color="success"
+              >온라인</v-chip
+            >
+            <v-chip v-else-if="bot.status === 'idle'" label link color="warning"
+              >자리비움</v-chip
+            >
+            <v-chip v-else-if="bot.status === 'dnd'" label link color="error"
+              >다른 용무중</v-chip
+            >
+            <v-chip v-else label link>알 수 없음</v-chip>
+          </div>
           <div>
             <v-btn v-if="!bot.locked" :href="bot.invite" target="_blank"
               >초대</v-btn
@@ -46,7 +64,10 @@ const query = gql`
       brief
       description
       locked
+      guilds
       invite
+      status
+      discordVerified
       owner {
         id
       }
