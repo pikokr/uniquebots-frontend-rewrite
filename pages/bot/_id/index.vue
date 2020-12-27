@@ -9,7 +9,7 @@
           <h1>{{ bot.tag }}</h1>
           <h3>{{ bot.brief }}</h3>
           <div>
-            <v-btn v-if="bot.invite" :href="bot.invite" target="_blank"
+            <v-btn v-if="!bot.locked" :href="bot.invite" target="_blank"
               >초대</v-btn
             >
             <v-btn
@@ -74,7 +74,9 @@ export default {
       description: md.render(data.data.bot.description),
     }
   },
+  // @ts-ignore
   head() {
+    // @ts-ignore
     const bot = this.bot
 
     return {
