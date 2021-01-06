@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Dropdown from '../Dropdown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import clsx from 'clsx'
 
 class Layout extends Component {
   render() {
@@ -17,7 +19,19 @@ class Layout extends Component {
             <div style={{ alignItems: 'center' }} className="flex">
               <Dropdown
                 button={({ opened }) => (
-                  <div className="inline-flex">드롭다운</div>
+                  <div
+                    className="inline-flex select-none cursor-pointer"
+                    style={{ alignItems: 'center' }}
+                  >
+                    <span>드롭다운</span>
+                    <FontAwesomeIcon
+                      icon={['fas', 'angle-down']}
+                      size="2x"
+                      className={clsx('ml-2 transition-transform', {
+                        'fa-rotate-180': opened,
+                      })}
+                    />
+                  </div>
                 )}
               >
                 <div className="flex flex-column">

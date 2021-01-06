@@ -13,7 +13,7 @@ const Dropdown = ({
   const [open, setOpen] = React.useState(false)
 
   return (
-    <ClickAwayHandler className="inline-block" handle={() => setOpen(false)}>
+    <ClickAwayHandler handle={() => setOpen(false)}>
       <Manager>
         <Reference>
           {({ ref }) => (
@@ -27,7 +27,7 @@ const Dropdown = ({
             {
               name: 'offset',
               options: {
-                offset: [0, 20],
+                offset: [0, open ? 20 : 30],
               },
             },
           ]}
@@ -42,7 +42,6 @@ const Dropdown = ({
                 {
                   'opacity-0': !open,
                   'pointer-events-none': !open,
-                  'mt-3': !open,
                 },
               )}
             >

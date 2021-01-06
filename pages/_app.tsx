@@ -1,6 +1,10 @@
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import React, { Component } from 'react'
 import Layout from '../components/Layout'
 import '../styles/global.css'
+
+library.add(fas)
 
 class MyApp extends Component<any> {
   componentDidMount() {

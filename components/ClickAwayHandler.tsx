@@ -4,9 +4,7 @@ type Props = {
   handle: () => void
 }
 
-class ClickAwayHandler extends Component<
-  Props & React.HTMLAttributes<HTMLDivElement>
-> {
+class ClickAwayHandler extends Component<Props> {
   node?: HTMLDivElement
 
   handleClick = (e: MouseEvent) => {
@@ -26,11 +24,7 @@ class ClickAwayHandler extends Component<
 
   render() {
     return (
-      <div
-        ref={(node) => (this.node = node || undefined)}
-        className="inline-block"
-        {...this.props}
-      >
+      <div ref={(node) => (this.node = node || undefined)}>
         {this.props.children}
       </div>
     )
