@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       colors: {
         'discord-dark': '#2C2F33',
-        'discord-black': '#23272A'
-      }
+        'discord-black': '#23272A',
+      },
     },
   },
   variants: {
