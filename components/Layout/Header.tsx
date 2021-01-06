@@ -60,8 +60,17 @@ const Header = () => {
                       </div>
                     )}
                   >
-                    <div className="flex flex-column">
-                      <div>테스트입니다</div>
+                    <div className="flex flex-col gap-1">
+                      <Link href="/profile/[id]" as={`/profile/${user.id}`}>
+                        <div className="rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all">
+                          프로필
+                        </div>
+                      </Link>
+                      <Link href="/logout" as={`/profile/${user.id}`}>
+                        <div className="rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all">
+                          로그아웃
+                        </div>
+                      </Link>
                     </div>
                   </Dropdown>
                 ) : (

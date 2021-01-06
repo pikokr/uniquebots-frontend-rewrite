@@ -12,6 +12,7 @@ export function getApolloClient(
   ctx: NextPageContext | undefined,
   initialState: any = null,
 ) {
+  if (apolloClient) return apolloClient
   let cookie: any
   if (ctx?.req && ctx.res) {
     cookie = new Cookies(ctx.req, ctx.res)
