@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
-import Dropdown from '../Dropdown'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import clsx from 'clsx'
+// import Dropdown from '../Dropdown'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import clsx from 'clsx'
+import { Query } from 'react-apollo'
+import { gql } from 'apollo-boost'
 
 class Layout extends Component {
   render() {
@@ -17,7 +19,7 @@ class Layout extends Component {
               <Link href="/">UNIQUEBOTS</Link>
             </div>
             <div style={{ alignItems: 'center' }} className="flex">
-              <Dropdown
+              {/*<Dropdown
                 leftOffset={-20}
                 button={({ opened }) => (
                   <div
@@ -38,7 +40,28 @@ class Layout extends Component {
                 <div className="flex flex-column">
                   <div>테스트입니다</div>
                 </div>
-              </Dropdown>
+              </Dropdown>*/}
+              <Query
+                query={gql`
+                  query {
+                    user: me {
+                      id
+                    }
+                    loginURL
+                  }
+                `}
+              >
+                {({ loading, data }: any) => {
+                  if (loading) return <div>Loading...</div>
+                  if (data)
+                    return data.user ? (
+                      <div></div>
+                    ) : (
+                      <a href={data.loginURL}>로그인</a>
+                    )
+                  return null
+                }}
+              </Query>
             </div>
           </div>
         </div>
