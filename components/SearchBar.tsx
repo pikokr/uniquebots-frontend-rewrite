@@ -15,14 +15,14 @@ const SearchBar = ({ initial }: { initial?: string }) => {
           '/search/' + encodeURIComponent(keyword),
         )
       }}
-      className="bg-discord-black mt-6 rounded-md flex"
+      className="dark:bg-discord-black border-2 border-discord-black mt-6 rounded-md flex"
     >
       <input
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
         type="text"
         placeholder="봇 검색하기"
-        className="bg-transparent p-3 outline-none flex-grow"
+        className="bg-transparent p-3 outline-none flex-grow min-w-0"
       />
       <button type="submit" className="p-3 bg-transparent">
         <FontAwesomeIcon size="2x" icon={['fas', 'search']} />

@@ -3,7 +3,7 @@ import SearchBar from '../components/SearchBar'
 
 const Home = () => {
   return (
-    <div className="px-2 lg:px-64">
+    <div>
       <SearchBar />
     </div>
   )

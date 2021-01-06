@@ -18,6 +18,7 @@ class Layout extends Component {
             </div>
             <div style={{ alignItems: 'center' }} className="flex">
               <Dropdown
+                leftOffset={-20}
                 button={({ opened }) => (
                   <div
                     className="inline-flex select-none cursor-pointer"
@@ -41,7 +42,7 @@ class Layout extends Component {
             </div>
           </div>
         </div>
-        {this.props.children}
+        <div className="md:px-24 px-2">{this.props.children}</div>
       </div>
     )
   }

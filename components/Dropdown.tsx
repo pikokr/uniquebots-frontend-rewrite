@@ -6,9 +6,11 @@ import ClickAwayHandler from './ClickAwayHandler'
 const Dropdown = ({
   children,
   button,
+  leftOffset = 0,
 }: {
   children: React.ReactNode
   button: (data: { opened: boolean }) => React.ReactNode
+  leftOffset?: number
 }) => {
   const [open, setOpen] = React.useState(false)
 
@@ -27,7 +29,7 @@ const Dropdown = ({
             {
               name: 'offset',
               options: {
-                offset: [0, open ? 20 : 30],
+                offset: [leftOffset, open ? 20 : 30],
               },
             },
           ]}

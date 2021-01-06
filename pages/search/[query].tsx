@@ -1,15 +1,42 @@
 import { NextPageContext } from 'next'
 import React, { Component } from 'react'
-import SearchBar from '../../components/SearchBar'
+import SearchResult from '../../components/SearchResult'
+import { Bot } from '../../interfaces'
+
+const sample: Bot[] = [
+  {
+    id: '123',
+    name: '테스트',
+    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    brief: '테스트입니다.',
+    description: '설명설명',
+  },
+  {
+    id: '123',
+    name: '테스트',
+    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    brief: '테스트입니다.',
+    description: '설명설명',
+  },
+  {
+    id: '123',
+    name: '테스트',
+    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    brief: '테스트입니다.',
+    description: '설명설명',
+  },
+  {
+    id: '123',
+    name: '테스트',
+    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    brief: '테스트입니다.',
+    description: '설명설명',
+  },
+]
 
 class Search extends Component<any> {
   render() {
-    return (
-      <div className="px-2 lg:px-64">
-        <SearchBar initial={this.props.keyword} />
-        <h2 className="text-2xl pt-2">검색 결과</h2>
-      </div>
-    )
+    return <SearchResult keyword={this.props.keyword} results={sample} />
   }
 }
 
