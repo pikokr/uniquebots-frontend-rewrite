@@ -1,8 +1,13 @@
 module.exports = {
   purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'discord-dark': '#2C2F33',
+        'discord-black': '#23272A'
+      }
+    },
   },
   variants: {
     extend: {},
