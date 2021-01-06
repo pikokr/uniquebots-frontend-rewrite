@@ -15,7 +15,11 @@ class Layout extends Component {
               <Link href="/">UNIQUEBOTS</Link>
             </div>
             <div style={{ alignItems: 'center' }} className="flex">
-              <Dropdown button={() => <div>드롭다운</div>}>
+              <Dropdown
+                button={({ opened }) => (
+                  <div className="inline-flex">드롭다운</div>
+                )}
+              >
                 <div className="flex flex-column">
                   <div>테스트입니다</div>
                 </div>
