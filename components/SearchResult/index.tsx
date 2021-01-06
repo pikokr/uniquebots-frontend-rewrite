@@ -17,7 +17,7 @@ class SearchResult extends Component<Props> {
           {this.props.results.map((it, key) => (
             <div
               key={key}
-              className="p-0 md:p-4 rounded-xl cursor-pointer hover:shadow-2xl transition-shadow bg-white text-black shadow-xl flex md:flex-row md:gap-2"
+              className="p-0 md:p-4 rounded-xl cursor-pointer hover:shadow-2xl transition-shadow bg-white dark:bg-discord-black dark:text-white text-black shadow-xl flex md:flex-row md:gap-2"
             >
               <img
                 src={it.avatarURL}
