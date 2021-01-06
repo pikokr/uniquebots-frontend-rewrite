@@ -2,19 +2,17 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Router from 'next/router'
 
-const SearchBar = () => {
-  const [keyword, setKeyword] = React.useState('')
+const SearchBar = ({ initial }: { initial?: string }) => {
+  const [keyword, setKeyword] = React.useState(initial || '')
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault()
+        if (!keyword) return
         return Router.push(
-          '/search',
-          '/search?' +
-            new URLSearchParams({
-              q: keyword,
-            }),
+          '/search/[id]',
+          '/search/' + encodeURIComponent(keyword),
         )
       }}
       className="bg-discord-black mt-6 rounded-md flex"
