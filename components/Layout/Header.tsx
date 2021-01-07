@@ -34,9 +34,8 @@ const Header = () => {
           >
             {({ loading, data }: any) => {
               if (loading) return <div>Loading...</div>
-              if (data) {
-                const user = data.user
-                return data.user ? (
+                const user = data?.user
+                if (data?.user) return (
                   <Dropdown
                     leftOffset={-20}
                     button={({ opened }) => (
@@ -73,12 +72,10 @@ const Header = () => {
                       </Link>
                     </div>
                   </Dropdown>
-                ) : (
-                  <a href={data.loginURL}>로그인</a>
                 )
+                return <div><a href={data.loginURL}>로그인</a></div>
               }
-              return null
-            }}
+            }
           </Query>
         </div>
       </div>
