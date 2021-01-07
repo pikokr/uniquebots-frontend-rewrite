@@ -30,6 +30,7 @@ const Header = () => {
                   id
                   tag
                   avatarURL
+                  admin
                 }
                 loginURL
               }
@@ -67,6 +68,13 @@ const Header = () => {
                       <Link href="/profile/[id]" as={`/profile/${user.id}`}>
                         <div className={dropdownItemClass}>프로필</div>
                       </Link>
+                      {user.admin && (
+                        <>
+                          <Link href="/admin">
+                            <div className={dropdownItemClass}>관리</div>
+                          </Link>
+                        </>
+                      )}
                       <Link href="/addbot">
                         <div className={dropdownItemClass}>봇 추가하기</div>
                       </Link>
