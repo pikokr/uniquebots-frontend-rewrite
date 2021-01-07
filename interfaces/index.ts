@@ -5,3 +5,8 @@ export interface Bot {
   description: string
   avatarURL: string
 }
+
+export interface Category {
+  id: string
+  name: string
+}
