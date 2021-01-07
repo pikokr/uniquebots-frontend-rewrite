@@ -8,7 +8,7 @@ const Dropdown = ({
   button,
   leftOffset = 0,
 }: {
-  children: React.ReactNode
+  children: (fn: { close: () => void }) => React.ReactNode
   button: (data: { opened: boolean }) => React.ReactNode
   leftOffset?: number
 }) => {
@@ -47,7 +47,9 @@ const Dropdown = ({
                 },
               )}
             >
-              {children}
+              {children({
+                close: () => setOpen(false),
+              })}
             </div>
           )}
         </Popper>

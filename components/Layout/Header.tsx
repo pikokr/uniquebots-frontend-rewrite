@@ -63,24 +63,26 @@ const Header = () => {
                       </div>
                     )}
                   >
-                    <div className="flex flex-col gap-1">
-                      <Link href="/profile/[id]" as={`/profile/${user.id}`}>
-                        <div className={dropdownItemClass}>프로필</div>
-                      </Link>
-                      {user.admin && (
-                        <>
-                          <Link href="/admin">
-                            <div className={dropdownItemClass}>관리</div>
-                          </Link>
-                        </>
-                      )}
-                      <Link href="/addbot">
-                        <div className={dropdownItemClass}>봇 추가하기</div>
-                      </Link>
-                      <Link href="/logout">
-                        <div className={dropdownItemClass}>로그아웃</div>
-                      </Link>
-                    </div>
+                    {({ close }) => (
+                      <div className="flex flex-col gap-1" onClick={close}>
+                        <Link href="/profile/[id]" as={`/profile/${user.id}`}>
+                          <div className={dropdownItemClass}>프로필</div>
+                        </Link>
+                        {user.admin && (
+                          <>
+                            <Link href="/admin">
+                              <div className={dropdownItemClass}>관리</div>
+                            </Link>
+                          </>
+                        )}
+                        <Link href="/addbot">
+                          <div className={dropdownItemClass}>봇 추가하기</div>
+                        </Link>
+                        <Link href="/logout">
+                          <div className={dropdownItemClass}>로그아웃</div>
+                        </Link>
+                      </div>
+                    )}
                   </Dropdown>
                 )
               return (
