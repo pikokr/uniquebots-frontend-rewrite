@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 
 const Header = () => {
+  const dropdownItemClass =
+    'rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all hover:bg-gray-100'
+
   return (
     <div
       className="mx-auto py-2 px-2 md:px-32 dark:bg-discord-black dark:text-white"
@@ -34,8 +37,9 @@ const Header = () => {
           >
             {({ loading, data }: any) => {
               if (loading) return <div>Loading...</div>
-                const user = data?.user
-                if (data?.user) return (
+              const user = data?.user
+              if (data?.user)
+                return (
                   <Dropdown
                     leftOffset={-20}
                     button={({ opened }) => (
@@ -61,21 +65,23 @@ const Header = () => {
                   >
                     <div className="flex flex-col gap-1">
                       <Link href="/profile/[id]" as={`/profile/${user.id}`}>
-                        <div className="rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all">
-                          프로필
-                        </div>
+                        <div className={dropdownItemClass}>프로필</div>
                       </Link>
-                      <Link href="/logout" as={`/profile/${user.id}`}>
-                        <div className="rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all">
-                          로그아웃
-                        </div>
+                      <Link href="/addbot">
+                        <div className={dropdownItemClass}>봇 추가하기</div>
+                      </Link>
+                      <Link href="/logout">
+                        <div className={dropdownItemClass}>로그아웃</div>
                       </Link>
                     </div>
                   </Dropdown>
                 )
-                return <div><a href={data.loginURL}>로그인</a></div>
-              }
-            }
+              return (
+                <div>
+                  <a href={data.loginURL}>로그인</a>
+                </div>
+              )
+            }}
           </Query>
         </div>
       </div>
