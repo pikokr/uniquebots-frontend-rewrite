@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 // import { Category } from '../interfaces'
 import Select from 'react-select'
 import SelectOption from '../components/Select/SelectOption'
+import SelectValueContainer from '../components/Select/SelectContainer'
+import SelectControl from '../components/Select/SelectControl'
 
 class AddBot extends Component {
   state = {
@@ -64,6 +66,8 @@ class AddBot extends Component {
                 isMulti
                 components={{
                   Option: SelectOption,
+                  SelectContainer: SelectValueContainer,
+                  Control: SelectControl,
                 }}
                 instanceId="addbot__category"
                 options={[
