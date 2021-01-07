@@ -36,8 +36,7 @@ const Header = () => {
               }
             `}
           >
-            {({ loading, data }: any) => {
-              if (loading) return <div>Loading...</div>
+            {({ data }: any) => {
               const user = data?.user
               if (data?.user)
                 return (
@@ -86,7 +85,7 @@ const Header = () => {
                 )
               return (
                 <div>
-                  <a href={data.loginURL}>로그인</a>
+                  <a href={data?.loginURL}>로그인</a>
                 </div>
               )
             }}
