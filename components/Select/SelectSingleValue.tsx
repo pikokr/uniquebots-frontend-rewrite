@@ -8,8 +8,7 @@ const SelectSingleValue = (props: SingleValueProps<any>) => {
     <components.SingleValue
       {...props}
       className={clsx(className, {
-        'text-white': true,
-        'placeholder-white': true,
+        'dark:text-white': true,
       })}
     />
   )
