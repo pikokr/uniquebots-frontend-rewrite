@@ -9,7 +9,7 @@ import { NextPageContext } from 'next'
 export let apolloClient: ApolloClient<any>
 
 export function getApolloClient(
-  ctx: NextPageContext | undefined,
+  ctx?: NextPageContext | undefined,
   initialState: any = null,
 ) {
   if (apolloClient) return apolloClient

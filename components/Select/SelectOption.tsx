@@ -13,7 +13,6 @@ const SelectOption = (props: OptionProps<any, any>) => {
     innerRef,
     innerProps,
   } = props
-  console.log(isFocused)
   return (
     <div
       ref={innerRef}
@@ -26,7 +25,7 @@ const SelectOption = (props: OptionProps<any, any>) => {
           //   'option--is-disabled': isDisabled,
           //   'option--is-focused': isFocused,
           //   'option--is-selected': isSelected,
-          'bg-blue-600': !isDisabled && (isFocused || isSelected),
+          'bg-blue-600 text-white': !isDisabled && (isFocused || isSelected),
           'dark:bg-discord-black text-black dark:text-white':
             (!isFocused && !isSelected) || isDisabled,
         },

@@ -7,7 +7,7 @@ const SelectControl = (props: ControlProps<any, any>) => {
     <components.Control
       {...props}
       className={clsx(props.className, {
-        'bg-discord-black': true,
+        'dark:bg-discord-black': true,
       })}
     />
   )

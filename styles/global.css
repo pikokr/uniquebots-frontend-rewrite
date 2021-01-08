@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './markdown.css';
+@import './highlight.css';
+
 /* Font */
 @font-face {
   font-family: 'yg-jalnan';

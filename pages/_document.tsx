@@ -10,16 +10,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <style>
-            {`
-            .dark {
-              --input-color: #23272A;
-              --input-text: #ffffff;
-            }
-            `}
-          </style>
-        </Head>
+        <Head />
         <body className="dark:bg-discord-dark dark:text-white">
           <Main />
           <NextScript />
