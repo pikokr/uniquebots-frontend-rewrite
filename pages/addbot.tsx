@@ -4,20 +4,28 @@ import UBSelect from '../components/Select/UBSelect'
 import { Category } from '../interfaces'
 import { getApolloClient } from '../lib/apollo'
 import { getMarkdown } from '../lib/markdown'
+import NProgress from 'nprogress'
+import { NextPageContext } from 'next'
 
 class AddBot extends Component {
   state = {
     category: [],
     brief: '',
     description: '',
-    library: ''
+    library: '',
+    clientID: '',
   }
 
   render() {
     return (
       <div className="pt-4">
         <div className="text-2xl">봇 추가하기</div>
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            NProgress.start()
+          }}
+        >
           <div className="grid gap-2">
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               <label className="block mt-4">
@@ -31,7 +39,7 @@ class AddBot extends Component {
               <label className="block mt-4">
                 <span>카테고리</span>
                 <UBSelect
-                value={this.state.category}
+                  value={this.state.category}
                   onChange={(category) => this.setState({ category })}
                   isSearchable
                   isMulti
@@ -89,15 +97,15 @@ class AddBot extends Component {
                   }}
                 />
               </label>
-            <label className="block mt-4">
-              <span>짧은 설명</span>
-              <input
-                type="text"
-                className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
-                placeholder="봇의 간단한 소개를 적어주세요.(최대 50자)"
-                maxLength={50}
-              />
-            </label>
+              <label className="block mt-4">
+                <span>짧은 설명</span>
+                <input
+                  type="text"
+                  className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
+                  placeholder="봇의 간단한 소개를 적어주세요.(최대 50자)"
+                  maxLength={50}
+                />
+              </label>
             </div>
             <label className="block mt-4">
               <span>봇 설명</span>
@@ -119,10 +127,40 @@ class AddBot extends Component {
                 ></div>
               </div>
             </label>
+            <div>
+              <button
+                className="p-2 bg-purple-700 shadow-lg rounded-md"
+                type="submit"
+              >
+                봇 추가하기
+              </button>
+            </div>
           </div>
         </form>
       </div>
     )
+  }
+}
+
+export async function getServerSideProps(ctx: NextPageContext) {
+  const client = getApolloClient(ctx)
+  const data = await client.query({
+    query: gql`
+      query {
+        me {
+          id
+        }
+      }
+    `,
+  })
+  if (data.data.me) {
+    return { props: {} }
+  }
+  return {
+    redirect: {
+      permanent: false,
+      destination: '/',
+    },
   }
 }
 
