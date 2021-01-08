@@ -6,14 +6,21 @@ import { getApolloClient } from '../lib/apollo'
 import { getMarkdown } from '../lib/markdown'
 import NProgress from 'nprogress'
 import { NextPageContext } from 'next'
+import { ProviderContext, withSnackbar } from 'notistack'
+import Router from 'next/router'
 
-class AddBot extends Component {
+class AddBot extends Component<ProviderContext> {
   state = {
     category: [],
     brief: '',
     description: '',
     library: '',
     clientID: '',
+    website: '',
+    prefix: '',
+    git: '',
+    support: '',
+    processing: false,
   }
 
   render() {
@@ -21,9 +28,78 @@ class AddBot extends Component {
       <div className="pt-4">
         <div className="text-2xl">봇 추가하기</div>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault()
+            if (this.state.processing) return
             NProgress.start()
+            this.setState({ processing: true })
+            const apollo = getApolloClient()
+            let data
+
+            try {
+              data = await apollo.mutate({
+                mutation: gql`
+                  mutation(
+                    $id: String!
+                    $brief: String!
+                    $description: String!
+                    $category: [String!]!
+                    $library: String!
+                    $website: URL
+                    $git: URL
+                    $prefix: String!
+                    $support: URL
+                  ) {
+                    addBot(
+                      id: $id
+                      brief: $brief
+                      description: $description
+                      category: $category
+                      library: $library
+                      website: $website
+                      git: $git
+                      prefix: $prefix
+                      support: $support
+                    )
+                  }
+                `,
+                variables: {
+                  id: this.state.clientID,
+                  brief: this.state.brief,
+                  description: this.state.description,
+                  category: this.state.category.map((it: any) => it.value),
+                  library: (this.state.library as any).value,
+                  website: this.state.website,
+                  git: this.state.git,
+                  prefix: this.state.prefix,
+                  support: this.state.support,
+                },
+              })
+            } catch (e) {
+              return [
+                NProgress.done(),
+                this.props.enqueueSnackbar(e.message, { variant: 'error' }),
+                this.setState({ processing: false }),
+              ]
+            }
+
+            if (data.errors) {
+              return [
+                NProgress.done(),
+                data.errors
+                  .map((it) => it.message)
+                  .forEach((r) =>
+                    this.props.enqueueSnackbar(r, { variant: 'error' }),
+                  ),
+                this.setState({ processing: false }),
+              ]
+            }
+
+            this.props.enqueueSnackbar('봇이 추가되었습니다.', {
+              variant: 'success',
+            }),
+              this.setState({ processing: false })
+            await Router.push('/')
           }}
         >
           <div className="grid gap-2">
@@ -31,6 +107,9 @@ class AddBot extends Component {
               <label className="block mt-4">
                 <span>봇 ID</span>
                 <input
+                  value={this.state.clientID}
+                  onChange={(e) => this.setState({ clientID: e.target.value })}
+                  required
                   type="text"
                   className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
                   placeholder="봇 클라이언트 ID를 입력해주세요"
@@ -101,9 +180,54 @@ class AddBot extends Component {
                 <span>짧은 설명</span>
                 <input
                   type="text"
+                  required
+                  value={this.state.brief}
+                  onChange={(e) => this.setState({ brief: e.target.value })}
                   className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
                   placeholder="봇의 간단한 소개를 적어주세요.(최대 50자)"
                   maxLength={50}
+                />
+              </label>
+              <label className="block mt-4">
+                <span>봇 웹사이트</span>
+                <input
+                  value={this.state.website}
+                  onChange={(e) => this.setState({ website: e.target.value })}
+                  type="url"
+                  placeholder="봇 웹사이트 주소를 입력해주세요"
+                  className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
+                />
+              </label>
+              <label className="block mt-4">
+                <span>GIT</span>
+                <input
+                  value={this.state.git}
+                  onChange={(e) => this.setState({ git: e.target.value })}
+                  type="url"
+                  placeholder="git 주소를 입력해주세요"
+                  className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
+                />
+              </label>
+              <label className="block mt-4">
+                <span>서포트 서버</span>
+                <input
+                  value={this.state.support}
+                  onChange={(e) => this.setState({ support: e.target.value })}
+                  type="url"
+                  placeholder="서포트 서버 주소를 입력해주세요"
+                  className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
+                />
+              </label>
+              <label className="block mt-4">
+                <span>프리픽스</span>
+                <input
+                  type="text"
+                  value={this.state.prefix}
+                  onChange={(e) => this.setState({ prefix: e.target.value })}
+                  required
+                  placeholder="봇의 접두사를 입력해주세요(최대 10자)"
+                  className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border dark:border-white focus:border-blue-600 transition-colors"
+                  maxLength={10}
                 />
               </label>
             </div>
@@ -114,6 +238,7 @@ class AddBot extends Component {
                   onChange={(e) =>
                     this.setState({ description: e.target.value })
                   }
+                  required
                   value={this.state.description}
                   className="w-full p-2 rounded-md border-gray-300 dark:bg-discord-black border resize-y dark:border-white focus:border-blue-600 transition-colors"
                   placeholder="봇이 어떤 기능을 하는지 적어주세요.(최대 5000자)"
@@ -153,7 +278,7 @@ export async function getServerSideProps(ctx: NextPageContext) {
       }
     `,
   })
-  if (data.data.me) {
+  if (data.data.me?.id) {
     return { props: {} }
   }
   return {
@@ -164,4 +289,4 @@ export async function getServerSideProps(ctx: NextPageContext) {
   }
 }
 
-export default AddBot
+export default withSnackbar(AddBot)
