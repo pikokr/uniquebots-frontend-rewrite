@@ -24,6 +24,7 @@
     "js-cookie": "^2.2.1",
     "markdown-it": "^12.0.4",
     "next": "latest",
+    "next-seo": "^4.17.0",
     "next-with-apollo": "^5.1.0",
     "notistack": "^1.0.3",
     "nprogress": "^0.2.0",

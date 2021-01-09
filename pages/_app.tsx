@@ -9,6 +9,7 @@ import 'nprogress/nprogress.css'
 import withApolloClient from '../lib/apollo'
 import { ApolloProvider } from 'react-apollo'
 import { SnackbarProvider } from 'notistack'
+import Error from "next/error";
 
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -27,14 +28,18 @@ function MyApp({ Component, pageProps, apollo }: any) {
   }
   return (
     <ApolloProvider client={apollo}>
-      <SnackbarProvider
-        maxSnack={6}
-        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-      >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </SnackbarProvider>
+      {
+        pageProps.error ? (
+            <Error statusCode={pageProps.error}/>
+        ): <SnackbarProvider
+            maxSnack={6}
+            anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SnackbarProvider>
+      }
     </ApolloProvider>
   )
 }
