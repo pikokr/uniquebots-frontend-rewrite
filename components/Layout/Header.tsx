@@ -85,11 +85,7 @@ const Header = () => {
                     )}
                   </Dropdown>
                 )
-              return (
-                <div>
-                  <a href={data?.loginURL}>로그인</a>
-                </div>
-              )
+              return <div>{data && <a href={data.loginURL}>로그인</a>}</div>
             }}
           </Query>
         </div>
