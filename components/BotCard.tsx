@@ -62,7 +62,7 @@ const BotCard = ({ bot }: { bot: Bot }) => {
               <Tippy content="봇 초대 링크를 가져올 수 없습니다. 잠금 처리된 봇일 수 있습니다">
                 <a
                   href={bot.invite}
-                  className="cursor-default p-3 w-1/2 text-center"
+                  className="cursor-default p-3 w-1/2 text-center hover:bg-blue-400 hover:text-white transition-colors"
                 >
                   초대하기
                 </a>
