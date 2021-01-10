@@ -1,3 +1,4 @@
+import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
@@ -50,12 +51,23 @@ const BotCard = ({ bot }: { bot: Bot }) => {
           </div>
           <div className="flex-grow" />
           <div className="flex w-full">
-            <a
-              href={bot.invite}
-              className="cursor-pointer p-3 hover:bg-blue-400 hover:text-white transition-colors w-1/2 text-center"
-            >
-              초대하기
-            </a>
+            {bot.invite ? (
+              <a
+                href={bot.invite}
+                className="cursor-pointer p-3 hover:bg-blue-400 hover:text-white transition-colors w-1/2 text-center"
+              >
+                초대하기
+              </a>
+            ) : (
+              <Tippy content="봇 초대 링크를 가져올 수 없습니다. 잠금 처리된 봇일 수 있습니다">
+                <a
+                  href={bot.invite}
+                  className="cursor-default p-3 w-1/2 text-center"
+                >
+                  초대하기
+                </a>
+              </Tippy>
+            )}
             <Link href="/bots/[id]" as={`/bots/${bot.id}`}>
               <a
                 href={bot.invite}
