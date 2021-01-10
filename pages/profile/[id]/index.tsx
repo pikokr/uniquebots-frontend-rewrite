@@ -8,6 +8,7 @@ import Tippy from '@tippyjs/react'
 
 class Profile extends Component<any> {
   render() {
+    console.log(this.props.user)
     return (
       <>
         <NextSeo
@@ -63,6 +64,9 @@ export async function getServerSideProps(ctx: NextPageContext) {
           tag
           avatarURL
           admin
+          bots {
+            id
+          }
         }
       }
     `,

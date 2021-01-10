@@ -8,6 +8,9 @@ module.exports = {
         'discord-black': '#23272A',
       },
     },
+    minHeight: {
+      '56': '14rem'
+    }
   },
   variants: {
     extend: {},

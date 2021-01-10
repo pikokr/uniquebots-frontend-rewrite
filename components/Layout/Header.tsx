@@ -5,7 +5,6 @@ import { Query } from 'react-apollo'
 import Dropdown from '../Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-
 const Header = () => {
   const dropdownItemClass =
     'rounded-md p-2 dark:hover:bg-gray-600 cursor-pointer transition-all hover:bg-gray-100'
@@ -17,13 +16,14 @@ const Header = () => {
     >
       <div className="flex justify-between">
         <div
-          className="text-2xl flex-grow flex"
+          className="text-2xl f-jalnan flex-grow flex"
           style={{ alignItems: 'center' }}
         >
           <Link href="/">UNIQUEBOTS</Link>
         </div>
         <div style={{ alignItems: 'center' }} className="flex">
           <Query
+            ssr
             query={gql`
               query {
                 user: me {
@@ -37,8 +37,9 @@ const Header = () => {
             `}
           >
             {({ data }: any) => {
+              if (typeof window === 'undefined') return null
               const user = data?.user
-              if (data?.user)
+              if (user)
                 return (
                   <Dropdown
                     leftOffset={-20}
@@ -85,7 +86,7 @@ const Header = () => {
                     )}
                   </Dropdown>
                 )
-              return <div>{data && <a href={data.loginURL}>로그인</a>}</div>
+              return (data && <a href={data.loginURL}>로그인</a>) || null
             }}
           </Query>
         </div>

@@ -1,38 +1,9 @@
 import { NextPageContext } from 'next'
 import React, { Component } from 'react'
 import SearchResult from '../../components/SearchResult'
-import { Bot } from '../../interfaces'
+import { Bot } from '../../types'
 
-const sample: Bot[] = [
-  {
-    id: '123',
-    name: '테스트',
-    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    brief: '테스트입니다.',
-    description: '설명설명',
-  },
-  {
-    id: '123',
-    name: '테스트',
-    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    brief: '테스트입니다.',
-    description: '설명설명',
-  },
-  {
-    id: '123',
-    name: '테스트',
-    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    brief: '테스트입니다.',
-    description: '설명설명',
-  },
-  {
-    id: '123',
-    name: '테스트',
-    avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    brief: '테스트입니다.',
-    description: '설명설명',
-  },
-]
+const sample: Bot[] = []
 
 class Search extends Component<any> {
   render() {
