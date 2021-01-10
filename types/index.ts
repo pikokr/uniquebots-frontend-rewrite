@@ -7,6 +7,7 @@ export interface Bot {
   guilds: number
   status: 'online' | 'idle' | 'dnd' | 'offline'
   categories: Category[]
+  invite: string
 }
 
 export interface Category {

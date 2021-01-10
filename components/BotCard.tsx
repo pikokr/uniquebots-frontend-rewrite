@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Link from 'next/link'
 import React from 'react'
 import { Bot, Status, StatusColors } from '../types'
 
@@ -32,9 +33,38 @@ const BotCard = ({ bot }: { bot: Bot }) => {
             <span>{bot.guilds} 서버</span>
           </div>
         </div>
-        <div className="p-2 pl-32">
+        <div className="p-2 lg:pb-0 lg:pr-0 pl-32 flex-col flex flex-grow">
           <div className="text-2xl">{bot.name}</div>
           <div>{bot.brief}</div>
+          <div className="flex flex-wrap gap-1">
+            {bot.categories.map((it, key) => (
+              <span
+                key={key}
+                className="rounded-md bg-gray-500 text-white p-1 whitespace-nowrap"
+              >
+                <Link href="/categories/[id]" as={`/categories/${it.id}`}>
+                  {it.name}
+                </Link>
+              </span>
+            ))}
+          </div>
+          <div className="flex-grow" />
+          <div className="flex w-full">
+            <a
+              href={bot.invite}
+              className="cursor-pointer p-3 hover:bg-blue-400 hover:text-white transition-colors w-1/2 text-center"
+            >
+              초대하기
+            </a>
+            <Link href="/bots/[id]" as={`/bots/${bot.id}`}>
+              <a
+                href={bot.invite}
+                className="cursor-pointer p-3 w-1/2 text-center hover:bg-blue-400 hover:text-white transition-colors lg:rounded-br-xl"
+              >
+                더보기
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
